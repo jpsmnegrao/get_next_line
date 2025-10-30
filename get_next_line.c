@@ -6,12 +6,12 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:44:44 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/10/30 19:47:16 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/10/30 20:01:05 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 
-	return ();
+	return ;
 }

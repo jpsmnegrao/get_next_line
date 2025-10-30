@@ -6,13 +6,13 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:06 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/10/30 19:46:59 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/10/30 20:00:47 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-char *get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif
