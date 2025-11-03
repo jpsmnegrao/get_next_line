@@ -6,12 +6,16 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:06 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 15:48:12 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:25:57 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdio.h>
 # include <unistd.h>
