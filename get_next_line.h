@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:06 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 16:25:57 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:08:57 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,17 @@
 # endif
 
 # include <stdio.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
 # include <stdint.h>
 
 char	*get_next_line(int fd);
-
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(const char *s1, const char *s2);
+// utils
 size_t	ft_strlen(const char *str);
+size_t	ft_linelen(char *str);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(const char *s1, const char *s2);
 
 #endif

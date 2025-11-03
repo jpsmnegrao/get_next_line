@@ -6,11 +6,12 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:10:12 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 17:21:24 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:50:29 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main_bonus.c -o gnl_bonus
+/* cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 
+get_next_line_bonus.c get_next_line_utils_bonus.c main_bonus.c -o gnl_bonus*/
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -36,7 +37,8 @@ int	main(int argc, char *argv[])
 			perror("perror says - ");
 			return (0);
 		}
-		while ((line = get_next_line(fd)) != NULL)
+		line = get_next_line(fd);
+		while (line != NULL)
 		{
 			printf("%s", line);
 			free(line);
