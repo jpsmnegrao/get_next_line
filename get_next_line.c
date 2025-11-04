@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:44:44 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 23:23:18 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/04 15:38:35 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static char	*read_and_add(int fd, char *text)
 		if (!text)
 			break ;
 	}
-	if (!text || !*text)
+	free(tmp);
+	if (!text || text[0] == '\0')
 	{
 		free(text);
 		return (NULL);
 	}
-	free(tmp);
 	return (text);
 }
 
@@ -89,15 +89,23 @@ char	*get_next_line(int fd)
 	static char	*text;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &text, 0) < 0)
 		return (NULL);
 	text = read_and_add(fd, text);
 	if (!text || text[0] == '\0')
 	{
-		free(text);
-		text = NULL;
+		if (text)
+		{
+			free(text);
+			text = NULL;
+		}
 		return (NULL);
 	}
 	line = take_line(&text);
+	if (!line && text)
+	{
+		free(text);
+		text = NULL;
+	}
 	return (line);
 }
