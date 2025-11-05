@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:34:25 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/04 15:40:18 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:33:57 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
 		printf("Cannot open file.");
 		return (0);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	while (((line = get_next_line(fd))))
 	{
 		printf("%s", line);
 		free(line);
@@ -40,3 +40,21 @@ int	main(int argc, char *argv[])
 	close(fd);
 	return (0);
 }
+// int	main(void)
+// {
+// 	// int		fd;
+// 	char	*line;
+
+// 	// fd = open(argv[1], O_RDONLY);
+// 	// if (fd < 0)
+// 	// {
+// 	// 	printf("Cannot open file.");
+// 	// 	return (0);
+// 	// }
+// 	while (((line = get_next_line(0))))
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	return (0);
+// }

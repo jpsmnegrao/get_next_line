@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:22 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 23:23:20 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:34:16 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	size = ft_strlen(s);
-	if (start > size)
+	if (start >= size)
 		return (ft_strdup(""));
 	if (len > size - start)
 		len = size - start;
@@ -79,14 +79,14 @@ char	*ft_strdup(const char *s1)
 	return (tmp);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+/*char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*str;
 	size_t	i;
 	size_t	len1;
 	size_t	len2;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
@@ -104,6 +104,35 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		str[i] = s2[i - len1];
 		i++;
 	}
+	str[i] = '\0';
+	return (str);
+}*/
+
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+	size_t	len1;
+	size_t	len2;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = malloc(len1 + len2 + 1);
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (++i < len1)
+		str[i] = s1[i];
+	j = 0;
+	while (j < len2)
+		str[i++] = s2[j++];
 	str[i] = '\0';
 	return (str);
 }
