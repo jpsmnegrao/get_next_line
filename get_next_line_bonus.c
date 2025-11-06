@@ -6,11 +6,19 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:59:04 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/05 14:33:41 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:05:12 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static int	has_newline(char *s)
+{
+	while (*s)
+		if (*s++ == '\n')
+			return (1);
+	return (0);
+}
 
 static char	*append_text(char *text, char *tmp)
 {
@@ -33,11 +41,9 @@ static char	*read_and_add(int fd, char *text)
 
 	tmp = malloc(BUFFER_SIZE + 1);
 	if (!tmp)
-		return (NULL);
+		return (free(text), NULL);
 	while (1)
 	{
-		if (text && ft_linelen(text) < ft_strlen(text))
-			break ;
 		size = read(fd, tmp, BUFFER_SIZE);
 		if (size <= 0)
 			break ;
@@ -45,13 +51,12 @@ static char	*read_and_add(int fd, char *text)
 		text = append_text(text, tmp);
 		if (!text)
 			break ;
+		if (has_newline(text))
+			break ;
 	}
 	free(tmp);
-	if (!text || text[0] == '\0')
-	{
-		free(text);
-		return (NULL);
-	}
+	if (!text || !*text || size == -1)
+		return (free(text), NULL);
 	return (text);
 }
 
@@ -75,10 +80,7 @@ static char	*take_line(char **text)
 	}
 	new_text = ft_substr(*text, len, ft_strlen(*text) - len);
 	if (!new_text)
-	{
-		free(line);
-		return (NULL);
-	}
+		return (free(line), NULL);
 	free(*text);
 	*text = new_text;
 	return (line);
@@ -89,7 +91,7 @@ char	*get_next_line(int fd)
 	static char	*text;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &text, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	text = read_and_add(fd, text);
 	if (!text || text[0] == '\0')
