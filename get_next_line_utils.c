@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:22 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/05 23:34:16 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:06:42 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,35 +78,6 @@ char	*ft_strdup(const char *s1)
 	tmp[i] = 0;
 	return (tmp);
 }
-
-/*char	*ft_strjoin(const char *s1, const char *s2)
-{
-	char	*str;
-	size_t	i;
-	size_t	len1;
-	size_t	len2;
-
-	if (!s1 && !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	i = 0;
-	str = malloc((len1 + len2 + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	while (i < len1)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (i < len1 + len2)
-	{
-		str[i] = s2[i - len1];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}*/
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

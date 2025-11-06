@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:44:44 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/05 23:33:43 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/06 20:29:01 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*read_and_add(int fd, char *text)
 			break ;
 	}
 	free(tmp);
-	if (!text || !*text)
+	if (!text || !*text || size == -1)
 		return (free(text), NULL);
 	return (text);
 }
