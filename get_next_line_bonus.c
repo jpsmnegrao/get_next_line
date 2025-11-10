@@ -6,11 +6,37 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:59:04 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/06 22:05:12 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:50:53 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+static char	*take_line(char **text)
+{
+	size_t	len;
+	char	*line;
+	char	*new_text;
+
+	if (!*text || !**text)
+		return (NULL);
+	len = ft_linelen(*text);
+	line = ft_substr(*text, 0, len);
+	if (!line)
+		return (NULL);
+	if (len == ft_strlen(*text))
+	{
+		free(*text);
+		*text = NULL;
+		return (line);
+	}
+	new_text = ft_substr(*text, len, ft_strlen(*text) - len);
+	if (!new_text)
+		return (free(line), NULL);
+	free(*text);
+	*text = new_text;
+	return (line);
+}
 
 static int	has_newline(char *s)
 {
@@ -60,54 +86,28 @@ static char	*read_and_add(int fd, char *text)
 	return (text);
 }
 
-static char	*take_line(char **text)
-{
-	size_t	len;
-	char	*line;
-	char	*new_text;
-
-	if (!*text || !**text)
-		return (NULL);
-	len = ft_linelen(*text);
-	line = ft_substr(*text, 0, len);
-	if (!line)
-		return (NULL);
-	if (len == ft_strlen(*text))
-	{
-		free(*text);
-		*text = NULL;
-		return (line);
-	}
-	new_text = ft_substr(*text, len, ft_strlen(*text) - len);
-	if (!new_text)
-		return (free(line), NULL);
-	free(*text);
-	*text = new_text;
-	return (line);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	*text;
+	static char	*text[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (NULL);
-	text = read_and_add(fd, text);
-	if (!text || text[0] == '\0')
+	text[fd] = read_and_add(fd, text[fd]);
+	if (!text[fd] || text[fd] == NULL)
 	{
-		if (text)
+		if (text[fd])
 		{
-			free(text);
-			text = NULL;
+			free(text[fd]);
+			text[fd] = NULL;
 		}
 		return (NULL);
 	}
-	line = take_line(&text);
-	if (!line && text)
+	line = take_line(&text[fd]);
+	if (!line && text[fd])
 	{
-		free(text);
-		text = NULL;
+		free(text[fd]);
+		text[fd] = NULL;
 	}
 	return (line);
 }

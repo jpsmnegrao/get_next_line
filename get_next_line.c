@@ -6,11 +6,37 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:44:44 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/06 20:29:01 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:50:16 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static char	*take_line(char **text)
+{
+	size_t	len;
+	char	*line;
+	char	*new_text;
+
+	if (!*text || !**text)
+		return (NULL);
+	len = ft_linelen(*text);
+	line = ft_substr(*text, 0, len);
+	if (!line)
+		return (NULL);
+	if (len == ft_strlen(*text))
+	{
+		free(*text);
+		*text = NULL;
+		return (line);
+	}
+	new_text = ft_substr(*text, len, ft_strlen(*text) - len);
+	if (!new_text)
+		return (free(line), NULL);
+	free(*text);
+	*text = new_text;
+	return (line);
+}
 
 static int	has_newline(char *s)
 {
@@ -58,32 +84,6 @@ static char	*read_and_add(int fd, char *text)
 	if (!text || !*text || size == -1)
 		return (free(text), NULL);
 	return (text);
-}
-
-static char	*take_line(char **text)
-{
-	size_t	len;
-	char	*line;
-	char	*new_text;
-
-	if (!*text || !**text)
-		return (NULL);
-	len = ft_linelen(*text);
-	line = ft_substr(*text, 0, len);
-	if (!line)
-		return (NULL);
-	if (len == ft_strlen(*text))
-	{
-		free(*text);
-		*text = NULL;
-		return (line);
-	}
-	new_text = ft_substr(*text, len, ft_strlen(*text) - len);
-	if (!new_text)
-		return (free(line), NULL);
-	free(*text);
-	*text = new_text;
-	return (line);
 }
 
 char	*get_next_line(int fd)

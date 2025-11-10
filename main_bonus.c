@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:10:12 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/10 16:08:09 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:36:24 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(int argc, char *argv[])
 	int		fd[3];
 	char	*line[3];
 	int		done[3] = {0, 0, 0};
+	int		i;
 
+	i = 0;
 	if (argc < 4)
 	{
 		printf("Usage: %s file1 file2 file3\n", argv[0]);
@@ -49,12 +51,13 @@ int	main(int argc, char *argv[])
 			}
 		}
 	}
-
-	for (int i = 0; i < 3; i++)
+	while (i < 3) 
+	{
 		close(fd[i]);
+		i++;
+	}
 	return (0);
 }
-
 
 // int	main(void)
 // {
