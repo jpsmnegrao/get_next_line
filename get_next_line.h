@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:45:06 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/03 19:08:57 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:21:45 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,10 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
-# include <stdint.h>
 
 char	*get_next_line(int fd);
-// utils
 size_t	ft_strlen(const char *str);
 size_t	ft_linelen(char *str);
 char	*ft_substr(const char *s, unsigned int start, size_t len);

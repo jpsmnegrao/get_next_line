@@ -6,17 +6,15 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:10:12 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/05 14:33:35 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:23:48 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main_bonus.c -o gnl_bonus*/
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "get_next_line_bonus.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -31,7 +29,7 @@ int	main(int argc, char *argv[])
 		printf("Cannot open file.");
 		return (0);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	while (((line = get_next_line(fd))))
 	{
 		printf("%s", line);
 		free(line);
@@ -40,3 +38,15 @@ int	main(int argc, char *argv[])
 	close(fd);
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	char	*line;
+
+// 	while (((line = get_next_line(0))))
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	return (0);
+// }

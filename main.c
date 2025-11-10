@@ -6,17 +6,15 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:34:25 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/06 21:11:44 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:23:53 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c main.c -o gnl */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -40,6 +38,7 @@ int	main(int argc, char *argv[])
 	close(fd);
 	return (0);
 }
+
 // int	main(void)
 // {
 // 	char	*line;

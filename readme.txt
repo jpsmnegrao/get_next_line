@@ -6,7 +6,7 @@
 #    By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 19:51:55 by jpaim-so          #+#    #+#              #
-#    Updated: 2025/10/30 19:53:08 by jpaim-so         ###   ########.fr        #
+#    Updated: 2025/11/07 17:49:16 by jpaim-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,3 +30,5 @@ If a newline character is encountered, return the current line
 immediately.
 
 Don’t read the whole file and then process each line.
+
+gdb --tui ./a.out <file>
