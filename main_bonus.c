@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:10:12 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/07 18:23:48 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:09 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,43 @@
 
 int	main(int argc, char *argv[])
 {
-	int		fd;
-	char	*line;
+	int		fd[3];
+	char	*line[3];
+	int		done[3] = {0, 0, 0};
 
-	if (argc < 2)
-		return (0);
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (argc < 4)
 	{
-		printf("Cannot open file.");
-		return (0);
+		printf("Usage: %s file1 file2 file3\n", argv[0]);
+		return (1);
 	}
-	while (((line = get_next_line(fd))))
+
+	fd[0] = open(argv[1], O_RDONLY);
+	fd[1] = open(argv[2], O_RDONLY);
+	fd[2] = open(argv[3], O_RDONLY);
+
+	while (!(done[0] && done[1] && done[2]))
 	{
-		printf("%s", line);
-		free(line);
+		for (int i = 0; i < 3; i++)
+		{
+			if (!done[i])
+			{
+				line[i] = get_next_line(fd[i]);
+				if (line[i])
+				{
+					printf("File %d: %s", i + 1, line[i]);
+					free(line[i]);
+				}
+				else
+					done[i] = 1;
+			}
+		}
 	}
-	get_next_line(fd);
-	close(fd);
+
+	for (int i = 0; i < 3; i++)
+		close(fd[i]);
 	return (0);
 }
+
 
 // int	main(void)
 // {
