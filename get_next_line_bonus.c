@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:59:04 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/10 17:50:53 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/12 04:51:50 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*take_line(char **text)
 
 static int	has_newline(char *s)
 {
-	while (*s)
+	while (s && *s)
 		if (*s++ == '\n')
 			return (1);
 	return (0);
@@ -55,7 +55,10 @@ static char	*append_text(char *text, char *tmp)
 	else
 		append = ft_strdup(tmp);
 	if (!append)
+	{
+		free(text);
 		return (NULL);
+	}
 	free(text);
 	return (append);
 }
@@ -68,6 +71,7 @@ static char	*read_and_add(int fd, char *text)
 	tmp = malloc(BUFFER_SIZE + 1);
 	if (!tmp)
 		return (free(text), NULL);
+	size = 1;
 	while (1)
 	{
 		size = read(fd, tmp, BUFFER_SIZE);
@@ -81,7 +85,7 @@ static char	*read_and_add(int fd, char *text)
 			break ;
 	}
 	free(tmp);
-	if (!text || !*text || size == -1)
+	if (!text || size == -1 || *text == '\0')
 		return (free(text), NULL);
 	return (text);
 }
@@ -94,15 +98,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX)
 		return (NULL);
 	text[fd] = read_and_add(fd, text[fd]);
-	if (!text[fd] || text[fd] == NULL)
-	{
-		if (text[fd])
-		{
-			free(text[fd]);
-			text[fd] = NULL;
-		}
+	if (!text[fd])
 		return (NULL);
-	}
 	line = take_line(&text[fd]);
 	if (!line && text[fd])
 	{
