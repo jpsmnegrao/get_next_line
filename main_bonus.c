@@ -6,11 +6,14 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:10:12 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/10 17:36:24 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/12 23:28:39 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main_bonus.c -o gnl_bonus*/
+/*
+	cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line_bonus.c get_next_line_utils_bonus.c main_bonus.c -o gnl_bonus
+	echo -e "Hello world\nThis is a test\nAnother line" "test the one line" "test the oneline with a break\n" | ./gnl_bonus
+*/
 
 #include "get_next_line_bonus.h"
 #include <fcntl.h>
@@ -58,15 +61,3 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
-
-// int	main(void)
-// {
-// 	char	*line;
-
-// 	while (((line = get_next_line(0))))
-// 	{
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	return (0);
-// }

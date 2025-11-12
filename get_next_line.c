@@ -6,7 +6,7 @@
 /*   By: jpaim-so <jpaim-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 19:44:44 by jpaim-so          #+#    #+#             */
-/*   Updated: 2025/11/11 17:32:42 by jpaim-so         ###   ########.fr       */
+/*   Updated: 2025/11/12 18:18:19 by jpaim-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,15 @@ static char	*take_line(char **text)
 
 static int	has_newline(char *s)
 {
-	while (s && *s)
-		if (*s++ == '\n')
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\n')
 			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -71,7 +77,6 @@ static char	*read_and_add(int fd, char *text)
 	tmp = malloc(BUFFER_SIZE + 1);
 	if (!tmp)
 		return (free(text), NULL);
-	size = 1;
 	while (1)
 	{
 		size = read(fd, tmp, BUFFER_SIZE);
