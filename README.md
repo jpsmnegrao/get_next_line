@@ -2,15 +2,6 @@
 
 ## Description
 
-A C function that reads from a file descriptor one line at a time, returning
-each line on successive calls. Handles newline characters, end-of-file
-conditions, and configurable buffer sizes. The bonus implementation supports
-reading from multiple file descriptors independently.
-
-# get_next_line
-
-## Description
-
 A C function that reads from a file descriptor one line at a time, returning each line on successive calls. Handles newline characters, end-of-file conditions, and configurable buffer sizes. The bonus implementation supports reading from multiple file descriptors independently.
 
 ## Instructions
